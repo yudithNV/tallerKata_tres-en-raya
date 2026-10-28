@@ -9,10 +9,20 @@ public class TresEnRaya {
         char jugador = proximoJugador();
         tablero[y - 1][x - 1] = jugador;
         ultimo = jugador;
-        return "";
+        if (hayGanador(jugador)) return jugador + " gana";
+        return "No hay ganador";
     }
 
     public char proximoJugador() {
         return ultimo == 'X' ? '+' : 'X';
+    }
+
+    private boolean hayGanador(char j) {
+        for (int i = 0; i < 3; i++) {
+            if (tablero[i][0] == j && tablero[i][1] == j && tablero[i][2] == j) return true;
+            if (tablero[0][i] == j && tablero[1][i] == j && tablero[2][i] == j) return true;
+        }
+        return (tablero[0][0] == j && tablero[1][1] == j && tablero[2][2] == j)
+            || (tablero[0][2] == j && tablero[1][1] == j && tablero[2][0] == j);
     }
 }

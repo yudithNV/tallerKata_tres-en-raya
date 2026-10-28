@@ -39,4 +39,29 @@ class TresEnRayaTest {
         juego.jugar(2, 1);
         assertEquals('X', juego.proximoJugador());
     }
+    //requerimiento 3
+    @Test 
+    void sinCondicionDeVictoria_noHayGanador() {
+        assertEquals("No hay ganador", juego.jugar(1, 1));
+    }
+
+    //requerimiento 3
+    @Test 
+    void ganaPorLineaHorizontal() {
+        juego.jugar(1, 1); juego.jugar(1, 2);
+        juego.jugar(2, 1); juego.jugar(2, 2);
+        assertEquals("X gana", juego.jugar(3, 1));
+    }
+    @Test 
+    void ganaPorLineaVertical() {
+        juego.jugar(1, 1); juego.jugar(2, 1);
+        juego.jugar(1, 2); juego.jugar(2, 2);
+        assertEquals("X gana", juego.jugar(1, 3));
+    }
+    @Test
+    void ganaPorLineaDiagonal() {
+        juego.jugar(1, 1); juego.jugar(1, 2);
+        juego.jugar(2, 2); juego.jugar(1, 3);
+        assertEquals("X gana", juego.jugar(3, 3));
+    }
 }
