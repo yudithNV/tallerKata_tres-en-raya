@@ -1,3 +1,4 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,5 +22,21 @@ class TresEnRayaTest {
     void lugarOcupado_lanzaExcepcion() {
         juego.jugar(1, 1);
         assertThrows(RuntimeException.class, () -> juego.jugar(1, 1));
+    }
+    // requerimiento 2
+    @Test 
+    void primerTurnoEsDeX() {
+    assertEquals('X', juego.proximoJugador());
+    }
+    @Test 
+    void despuesDeXJuegaMas() {
+        juego.jugar(1, 1);
+        assertEquals('+', juego.proximoJugador());
+    }
+    @Test 
+    void despuesDeMasJuegaX() {
+        juego.jugar(1, 1);
+        juego.jugar(2, 1);
+        assertEquals('X', juego.proximoJugador());
     }
 }
